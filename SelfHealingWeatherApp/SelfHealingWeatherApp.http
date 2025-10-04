@@ -1,0 +1,6 @@
+@SelfHealingWeatherApp_HostAddress = http://localhost:5142
+
+GET {{SelfHealingWeatherApp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
