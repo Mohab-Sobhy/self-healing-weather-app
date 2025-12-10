@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\API",
+    "\\bin\\Debug",
+    "\\bin\\Debug\\net8.0",
+    "\\bin\\Debug\\net8.0\\cs",
+    "\\Domain\\Entities",
+    "\\Domain\\Repositories"
+  ],
+  "SelectedNode": "\\API\\WeatherController.cs",
+  "PreviewInSolutionExplorer": false
+}
