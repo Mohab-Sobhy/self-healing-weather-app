@@ -1,0 +1,43 @@
+services:
+  backend:
+    image: self-healing-weather-backend:1.0
+    container_name: weather-backend
+    ports:
+      - "5142:5142"
+    restart: always
+
+    environment:
+      ASPNETCORE_URLS: http://+:5142
+
+    healthcheck:
+      test: >
+        sh -c "
+        curl -fs http://localhost:5142/health/live &&
+        curl -fs http://localhost:5142/health/ready
+        "
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+  frontend:
+    image: self-healing-weather-frontend:1.0
+    container_name: weather-frontend
+    ports:
+      - "8080:80"
+    restart: always
+
+    depends_on:
+      backend:
+        condition: service_healthy
+
+    healthcheck:
+      test: >
+        sh -c "
+        curl -fs http://localhost:80/api/weather?city=paris
+        "
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
